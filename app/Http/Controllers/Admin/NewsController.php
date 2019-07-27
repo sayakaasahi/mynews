@@ -54,6 +54,9 @@ class NewsController extends Controller
   public function edit(Request $request)
   {
     $news=News::find($request->id);
+    if (empty($news)) {
+     abort(404);    
+    }
 
     return view('admin.news.edit',['news_form'=>$news]);
   }
@@ -63,6 +66,14 @@ class NewsController extends Controller
     $this->validate($request,News::$rules);
     $news=News::find($request->id);
     $news_form=$request->all();
+    if(isset($news_form['image'])){
+      $path=$request->file('image')->store('public/image');
+      $news->image_path=basename($path);
+      unset($news_form['image']);
+    }elseif(isset($request->remove)){
+      $news->image_path-null;
+      unset($news_form['remove']);
+    }
     unset($news_form['_token']);
     $news->fill($news_form)->save();
     return redirect('admin/news');
