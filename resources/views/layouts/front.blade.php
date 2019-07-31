@@ -18,8 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet"  type="text/css">
     
     <!-- Styles -->
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
   </head>
   <body>
     <div id="app">
@@ -37,8 +37,9 @@
             <ul class="navbar-nav mr-auto">
               
             </ul>
+            <!-- Right Side Of Navbar --> 
             <ul class="navbar-nav ml-auto">
-            
+              
             <!-- Authentication Links -->
             @guest
               <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -61,7 +62,6 @@
                 </div>
               </li>
              @endguest
-            <!-- Right Side Of Navbar -->  
             </ul>
           </div>
         </div>
